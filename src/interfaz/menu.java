@@ -4,7 +4,7 @@
  * @author <gpietrafesavieitez@danielcastelao.org>
  */
 
-package menus;
+package interfaz;
 
 import javax.swing.JOptionPane;
 import personajes.Personaje;

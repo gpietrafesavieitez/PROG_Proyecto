@@ -4,10 +4,10 @@
  * @author <gpietrafesavieitez@danielcastelao.org>
  */
 
-package proyecto;
+package juego;
 
 import javax.swing.JOptionPane;
-import menus.menu;
+import interfaz.menu;
 
 public class Main {
 
