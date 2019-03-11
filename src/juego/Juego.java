@@ -7,11 +7,11 @@
 package juego;
 
 import javax.swing.JOptionPane;
-import interfaz.menu;
+import interfaz.Menu;
 
-public class Main {
+public class Juego {
 
     public static void main(String[] args) {
-        menu.crearPJ();
+        Menu.crearPJ();
     }
 }

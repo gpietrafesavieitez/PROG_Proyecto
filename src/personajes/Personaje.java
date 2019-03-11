@@ -84,22 +84,4 @@ public class Personaje {
     public String toString() {
         return "Personaje{" + "nick=" + nick + ", inventario=" + inventario + ", raza=" + raza + ", statVida=" + statVida + ", statAtaque=" + statAtaque + ", statDefensa=" + statDefensa + ", statMagia=" + statMagia + '}';
     }
-
-    public void createStats(){
-        if(raza.equalsIgnoreCase("humano")){
-            statAtaque = 120;
-            statDefensa = 230;
-            statMagia = 50;
-        }else if(raza.equalsIgnoreCase("elfo")){
-            statVida = 300;
-            statAtaque = 90;
-            statDefensa = 80;
-            statMagia = 120;
-        }else{
-            statVida = 150;
-            statAtaque = 100;
-            statDefensa = 200;
-            statMagia = 0;  
-        }
-    }
 }
