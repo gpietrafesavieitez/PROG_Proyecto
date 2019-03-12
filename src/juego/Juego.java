@@ -7,12 +7,20 @@
 package juego;
 
 import javax.swing.JOptionPane;
-import interfaz.Menu;
+import interfaz.Interfaz;
 import personajes.Personaje;
 
 public class Juego {
 
     public static void main(String[] args) {
-        System.out.println(Menu.crearPJ());
+        Personaje player = Interfaz.crearPersonaje();
+        String e1 = Interfaz.crearEscenario("img/bosque.jpg",new String[]{"Ir al Norte","Ir al Sur"}, "Despiertas en un bosque, no hay\nnadie a tu alrededor y no\nsabes qué hora es pero sabes\nque es de noche porque lo\npoco que puedes ver es gracias\na la luz de la luna.\n\nPuedes ver dos caminos...\n\n¿Qué quieres hacer?");
+        if(e1.equals("0")){
+            System.out.println("Vas al norte");
+        }else if(e1.equals("1")){
+            System.out.println("Vas al sur");
+        }else{
+            System.out.println("else");
+        }
     }
 }

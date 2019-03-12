@@ -7,28 +7,24 @@
 package personajes;
 
 public class Personaje {
-    private String nick;
-    private String raza;
-    private double statVida = 100, statAtaque;
-    private final String avatar;
+    private String nick, raza, avatar;
+    private int[] stats;
     
-    public Personaje(String raza){
-        this.raza = raza;
-        if(raza.equalsIgnoreCase("humano")){
-            this.statVida = 100;
-            this.statAtaque = 120;
-            this.avatar = "img/icons/humano.jpg";
-        }else if(raza.equalsIgnoreCase("elfo")){
-            this.statVida = 300;
-            this.statAtaque = 90;
-            this.avatar = "img/icons/elfo.jpg";
-        }else{
-            this.statVida = 150;
-            this.statAtaque = 100;
-            this.avatar = "img/icons/orco.jpg";
-        }
+    public Personaje(){
     }
 
+    public Personaje(String raza) {
+        this.raza = raza;
+        this.avatar = "img/icons/" + this.raza + ".jpg";
+        if(raza.equalsIgnoreCase("humano")){
+            stats = new int[] {100,120,80};
+        }else if(raza.equalsIgnoreCase("elfo")){
+            stats = new int[] {200,80,50};
+        }else{
+            stats = new int[] {75,150,95};
+        }
+    }
+    
     public String getNick() {
         return nick;
     }
@@ -45,28 +41,26 @@ public class Personaje {
         this.raza = raza;
     }
 
-    public double getStatVida() {
-        return statVida;
+    public int[] getStats() {
+        return stats;
     }
 
-    public void setStatVida(double statVida) {
-        this.statVida = statVida;
+    public void setStats(int[] stats) {
+        this.stats = stats;
     }
-
-    public double getStatAtaque() {
-        return statAtaque;
-    }
-
-    public void setStatAtaque(double statAtaque) {
-        this.statAtaque = statAtaque;
-    }
-
+    
     public String getAvatar() {
         return avatar;
     }
 
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
-        return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", statVida=" + statVida + ", statAtaque=" + statAtaque + '}';
+        return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", stats=" + stats + ", avatar=" + avatar + '}';
     }
+    
+    //metodo atacar()?
 }
