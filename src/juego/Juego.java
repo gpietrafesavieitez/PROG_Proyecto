@@ -8,10 +8,11 @@ package juego;
 
 import javax.swing.JOptionPane;
 import interfaz.Menu;
+import personajes.Personaje;
 
 public class Juego {
 
     public static void main(String[] args) {
-        Menu.crearPJ();
+        System.out.println(Menu.crearPJ());
     }
 }

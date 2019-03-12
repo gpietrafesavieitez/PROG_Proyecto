@@ -6,17 +6,29 @@
 
 package interfaz;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import personajes.Personaje;
-import utilidades.PedirDatos;
 
 public class Menu {
     
-    public static void crearPJ(){
-        Personaje player = new Personaje();
-        player.setNick(JOptionPane.showInputDialog(null,"¿Cómo te llamarás?","Juego",3));
-
-        String[] options = {"Humano", "Elfo", "Orco"};
-        JOptionPane.showOptionDialog(null, "Bienvenido al mundo, " + player.getNick() + ".\n\nSelecciona tu raza:", "Juego", 0, JOptionPane.QUESTION_MESSAGE, null, options, "Humano");
+    public static Personaje crearPJ(){
+        Personaje player;
+        String[] arrayRazas = {"Humano", "Elfo", "Orco"};
+        try{
+            ImageIcon icono = new ImageIcon("img/icons/raza.jpg");
+            Object razaElegida = JOptionPane.showInputDialog(null, "Selecciona tu raza", "RPG", 0, icono, arrayRazas, "Humano");
+            player = new Personaje(razaElegida.toString());
+            icono = new ImageIcon(player.getAvatar());
+            Object nickElegido = JOptionPane.showInputDialog(null, "¿Cómo se llamará tu personaje?", "RPG", 0, icono, null, null);
+            player.setNick(nickElegido.toString());
+            return player;
+        }catch(NullPointerException e1){
+            System.exit(0);
+        }catch(Exception e){
+            System.out.println("DEBUG: " + e.getMessage());
+        }
+        return null;
     }
+    
 }

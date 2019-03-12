@@ -8,20 +8,25 @@ package personajes;
 
 public class Personaje {
     private String nick;
-    private String[] inventario;
     private String raza;
-    private double statVida = 100, statAtaque, statDefensa, statMagia;
+    private double statVida = 100, statAtaque;
+    private final String avatar;
     
-    public Personaje(){ 
-    }
-
-    public Personaje(String nick, String[] inventario, String raza, double statAtaque, double statDefensa, double statMagia) {
-        this.nick = nick;
-        this.inventario = inventario;
+    public Personaje(String raza){
         this.raza = raza;
-        this.statAtaque = statAtaque;
-        this.statDefensa = statDefensa;
-        this.statMagia = statMagia;
+        if(raza.equalsIgnoreCase("humano")){
+            this.statVida = 100;
+            this.statAtaque = 120;
+            this.avatar = "img/icons/humano.jpg";
+        }else if(raza.equalsIgnoreCase("elfo")){
+            this.statVida = 300;
+            this.statAtaque = 90;
+            this.avatar = "img/icons/elfo.jpg";
+        }else{
+            this.statVida = 150;
+            this.statAtaque = 100;
+            this.avatar = "img/icons/orco.jpg";
+        }
     }
 
     public String getNick() {
@@ -30,14 +35,6 @@ public class Personaje {
 
     public void setNick(String nick) {
         this.nick = nick;
-    }
-
-    public String[] getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(String[] inventario) {
-        this.inventario = inventario;
     }
 
     public String getRaza() {
@@ -64,24 +61,12 @@ public class Personaje {
         this.statAtaque = statAtaque;
     }
 
-    public double getStatDefensa() {
-        return statDefensa;
-    }
-
-    public void setStatDefensa(double statDefensa) {
-        this.statDefensa = statDefensa;
-    }
-
-    public double getStatMagia() {
-        return statMagia;
-    }
-
-    public void setStatMagia(double statMagia) {
-        this.statMagia = statMagia;
+    public String getAvatar() {
+        return avatar;
     }
 
     @Override
     public String toString() {
-        return "Personaje{" + "nick=" + nick + ", inventario=" + inventario + ", raza=" + raza + ", statVida=" + statVida + ", statAtaque=" + statAtaque + ", statDefensa=" + statDefensa + ", statMagia=" + statMagia + '}';
+        return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", statVida=" + statVida + ", statAtaque=" + statAtaque + '}';
     }
 }
