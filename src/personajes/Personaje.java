@@ -26,6 +26,13 @@ public class Personaje {
             stats = new int[] {75,150,95};
         }
     }
+
+    public Personaje(String nick, String raza, String avatar) {
+        this.nick = nick;
+        this.raza = raza;
+        this.avatar = avatar;
+        this.stats = stats;
+    }
     
     public String getNick() {
         return nick;
