@@ -18,8 +18,8 @@ public class Interfaz {
         ImageIcon icono;
         String[] arrayRazas = {"Humano", "Elfo", "Orco"};
         try{
-            icono = new ImageIcon("img/icons/raza.jpg");
-            raza = JOptionPane.showInputDialog(null, "Escoge tu raza:", "RPGame", 0, icono, arrayRazas, "Humano");
+            icono = new ImageIcon("img/icons/Raza.jpg");
+            raza = JOptionPane.showInputDialog(null, "Escoge tu raza:", "RPGame", 0, icono, arrayRazas, null);
             player = new Personaje(raza.toString());
             icono = new ImageIcon(player.getAvatar());
             do{
@@ -31,7 +31,7 @@ public class Interfaz {
         }catch(NullPointerException e1){
             System.exit(0);
         }catch(Exception e){
-            System.out.println("DEBUG: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -44,7 +44,7 @@ public class Interfaz {
              decision = JOptionPane.showOptionDialog(null, texto, "RPGame", 0, 0, imagen, opciones, null);
              return decision.toString();
         }catch(Exception e){
-            System.out.println("DEBUG: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
         return null;
     }

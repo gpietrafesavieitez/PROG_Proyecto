@@ -13,8 +13,9 @@ import personajes.Personaje;
 public class Juego {
 
     public static void main(String[] args) {
+        System.out.println("*** DEBUG ***");
         Personaje player = Interfaz.crearPersonaje();
-        String e1 = Interfaz.crearEscenario("img/bosque.jpg",new String[]{"Ir al Norte","Ir al Sur"}, "Despiertas en un bosque, no hay\nnadie a tu alrededor y no\nsabes qué hora es pero sabes\nque es de noche porque lo\npoco que puedes ver es gracias\na la luz de la luna.\n\nPuedes ver dos caminos...\n\n¿Qué quieres hacer?");
+        String e1 = Interfaz.crearEscenario("img/Bosque.jpg",new String[]{"Ir al Norte","Ir al Sur"}, "Despiertas en un bosque, no hay\nnadie a tu alrededor y no\nsabes qué hora es pero sabes\nque es de noche porque lo\npoco que puedes ver es gracias\na la luz de la luna.\n\nPuedes ver dos caminos...\n\n¿Qué quieres hacer?");
         if(e1.equals("0")){
             System.out.println("Vas al norte");
         }else if(e1.equals("1")){
@@ -22,5 +23,6 @@ public class Juego {
         }else{
             System.out.println("else");
         }
+        System.out.println(player.toString() + e1);
     }
 }

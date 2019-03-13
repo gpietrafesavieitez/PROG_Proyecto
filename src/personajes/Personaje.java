@@ -6,6 +6,8 @@
 
 package personajes;
 
+import java.util.Arrays;
+
 public class Personaje {
     private String nick, raza, avatar;
     private int[] stats;
@@ -16,9 +18,9 @@ public class Personaje {
     public Personaje(String raza) {
         this.raza = raza;
         this.avatar = "img/icons/" + this.raza + ".jpg";
-        if(raza.equalsIgnoreCase("humano")){
+        if(raza.equalsIgnoreCase("Humano")){
             stats = new int[] {100,120,80};
-        }else if(raza.equalsIgnoreCase("elfo")){
+        }else if(raza.equalsIgnoreCase("Elfo")){
             stats = new int[] {200,80,50};
         }else{
             stats = new int[] {75,150,95};
@@ -59,7 +61,7 @@ public class Personaje {
 
     @Override
     public String toString() {
-        return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", stats=" + stats + ", avatar=" + avatar + '}';
+        return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", stats=" + Arrays.toString(stats) + ", avatar=" + avatar + '}';
     }
     
     //metodo atacar()?
