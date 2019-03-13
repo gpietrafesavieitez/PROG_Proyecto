@@ -4,13 +4,11 @@
  * @author <gpietrafesavieitez@danielcastelao.org>
  */
 
-package personajes;
-
-import java.util.Arrays;
+package clases;
 
 public class Personaje {
     private String nick, raza, avatar;
-    private int[] stats;
+    private int hp, save; // de momento solo hp para simplificar, si tal luego se mete atq,def,magia etc
     
     public Personaje(){
     }
@@ -19,21 +17,22 @@ public class Personaje {
         this.raza = raza;
         this.avatar = "img/icons/" + this.raza + ".jpg";
         if(raza.equalsIgnoreCase("Humano")){
-            stats = new int[] {100,120,80};
+            this.hp = 100;
         }else if(raza.equalsIgnoreCase("Elfo")){
-            stats = new int[] {200,80,50};
+            this.hp = 200;
         }else{
-            stats = new int[] {75,150,95};
+            this.hp = 85;
         }
     }
 
-    public Personaje(String nick, String raza, String avatar) {
+    public Personaje(String nick, String raza, String avatar, int hp, int save) {
         this.nick = nick;
         this.raza = raza;
         this.avatar = avatar;
-        this.stats = stats;
+        this.hp = hp;
+        this.save = save;
     }
-    
+
     public String getNick() {
         return nick;
     }
@@ -50,14 +49,6 @@ public class Personaje {
         this.raza = raza;
     }
 
-    public int[] getStats() {
-        return stats;
-    }
-
-    public void setStats(int[] stats) {
-        this.stats = stats;
-    }
-    
     public String getAvatar() {
         return avatar;
     }
@@ -66,10 +57,25 @@ public class Personaje {
         this.avatar = avatar;
     }
 
-    @Override
-    public String toString() {
-        return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", stats=" + Arrays.toString(stats) + ", avatar=" + avatar + '}';
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getSave() {
+        return save;
+    }
+
+    public void setSave(int save) {
+        this.save = save;
     }
     
     //metodo atacar()?
+    @Override
+    public String toString() {
+        return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", avatar=" + avatar + ", hp=" + hp + ", save=" + save + '}';
+    }
 }

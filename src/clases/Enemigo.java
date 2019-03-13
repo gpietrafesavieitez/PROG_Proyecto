@@ -4,7 +4,7 @@
  * <gpietrafesavieitez@danielcastelao.org>
  */
 
-package personajes;
+package clases;
 
 public class Enemigo {
     private String nombre, avatar;

@@ -1,1 +1,0 @@
-ElsaPataky:Humano:img/icons/Humano.jpg:[100, 120, 80]
