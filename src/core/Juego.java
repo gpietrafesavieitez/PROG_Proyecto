@@ -11,6 +11,7 @@ import java.io.IOException;
 public class Juego {
     
     public static void ejecutar(){
+        System.out.println("*** DEBUG ***");
         try{
             Interfaz.pantallaInicio();
         }catch(IOException ex){
