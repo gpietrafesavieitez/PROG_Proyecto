@@ -1,9 +1,3 @@
-/**
- * Gabriel P.
- * CPR Daniel Castelao
- * @author <gpietrafesavieitez@danielcastelao.org>
- */
-
 package clases;
 
 public class Personaje {

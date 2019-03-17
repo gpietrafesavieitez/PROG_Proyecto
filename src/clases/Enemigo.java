@@ -1,9 +1,3 @@
-/**
- * Gabriel P.
- * CPR Daniel Castelao
- * <gpietrafesavieitez@danielcastelao.org>
- */
-
 package clases;
 
 public class Enemigo {
