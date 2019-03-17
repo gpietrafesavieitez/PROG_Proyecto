@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import clases.Personaje;
 import static core.Metodos.*;
+import data.Personaje;
 
 public class Interfaz {
     
@@ -21,20 +21,20 @@ public class Interfaz {
         }else if(op == 1){
             cargarPartida(playerChooser());
         }else if(op == 2){
-            JOptionPane.showMessageDialog(null, "- Sergio Lorenzo Rodríguez.\n- Gabriel Pietrafesa Viéitez.\n\nVersión 1.0.0", "RPGame", 3);
+            JOptionPane.showMessageDialog(null, "- Sergio Lorenzo Rodríguez.\n- Gabriel Pietrafesa Viéitez.\n\nVersión: Pre-alfa (en desarrollo)", "RPGame", 3);
             menuInicio();
         }
         System.exit(0);
     }
     
-    public static String menuHandler(String op) throws IOException{
+    public static String menuExitHandler(String op) throws IOException{
         if(op == null){
             menuInicio();
         }
         return op;
     }
     
-    public static int crearEscenario(String img, String[] opciones, String texto){
+    public static int crearEscena(String img, String[] opciones, String texto){
         return JOptionPane.showOptionDialog(null, texto, "RPGame", 0, 0, new ImageIcon(img), opciones, null);
     }
     
@@ -42,15 +42,11 @@ public class Interfaz {
         guardarPartida(pj, 1);
         System.out.println(pj.toString());
         String[] opciones = {"IR AL NORTE", "IR AL SUR"};
-        int op = crearEscenario("img/Night2.jpg", opciones, "Te despiertas en medio de un oscuro bosque.\nTu hija Luna ha desaparecido.\nDecides ir a buscarla pero hay dos caminos que se separan.\nHace bastante frío y no sabes si tu hija estará bien.\n¿Qué quieres hacer?");
+        int op = crearEscena("img/forest.gif", opciones, "Te despiertas en medio de un bosque.\nLlueve y está oscuro pero no estás seguro que sea de noche.\nTu hija pequeña, Luna, ha desaparecido.\nDecides ir a buscarla pero hay dos caminos que se separan.\nHace bastante frío y no sabes si tu hija estará bien.\n¿Qué quieres hacer?");
         if(op == 0){ // igual es mejor usar switch case en el futuro cuando haya muchas ramas para + organizacion
             System.out.println("Vas al norte");
-            escenario2(pj);
         }else if(op == 1){
             System.out.println("Vas al sur");
-            escenario3(pj);
-        }else{ // cuando sales (?)
-            System.out.println("else");
         }
     }
     

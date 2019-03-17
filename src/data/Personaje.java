@@ -1,4 +1,4 @@
-package clases;
+package data;
 
 public class Personaje {
     private String nick, raza, avatar;

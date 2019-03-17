@@ -1,4 +1,4 @@
-package clases;
+package data;
 
 public class Enemigo {
     private String nombre, avatar;

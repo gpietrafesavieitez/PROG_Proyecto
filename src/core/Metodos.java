@@ -1,6 +1,6 @@
 package core;
 
-import clases.Personaje;
+import data.Personaje;
 import static core.Interfaz.*;
 import java.io.File;
 import java.io.FileWriter;
@@ -19,11 +19,11 @@ public class Metodos {
     public static Personaje playerBuilder() throws IOException{
         String[] razas = {"Humano", "Elfo", "Orco"};
         String nick;
-        String raza = menuHandler((String) JOptionPane.showInputDialog(null, "Escoge tu raza:", "RPGame", 0, new ImageIcon("img/icons/Raza.jpg"), razas, null));
+        String raza = menuExitHandler((String) JOptionPane.showInputDialog(null, "Escoge tu raza:", "RPGame", 0, new ImageIcon("img/icons/Raza.jpg"), razas, null));
         player = new Personaje(raza.toString());
         icon = new ImageIcon(player.getAvatar());
         do{
-            nick = menuHandler((String) JOptionPane.showInputDialog(null, "Has seleccionado: '" + raza + "'.\n\nDale un nombre a tu personaje:", "RPGame", 0, icon, null, null));
+            nick = menuExitHandler((String) JOptionPane.showInputDialog(null, "Has seleccionado: '" + raza + "'.\n\nDale un nombre a tu personaje:", "RPGame", 0, icon, null, null));
         }while(!Utilidades.validar(nick));
         player.setNick(nick.toString());
         FileWriter fw = new FileWriter(new File("save/index"), true);
@@ -47,7 +47,7 @@ public class Metodos {
         while(sc.hasNext()){
             personajes = sc.nextLine().split(":");
         }
-        String nick = menuHandler((String) JOptionPane.showInputDialog(null, "Selecciona un personaje", "RPGame", 0, new ImageIcon("img/icons/Load.jpg"), personajes, null));
+        String nick = menuExitHandler((String) JOptionPane.showInputDialog(null, "Selecciona un personaje", "RPGame", 0, new ImageIcon("img/icons/Load.jpg"), personajes, null));
         sc = new Scanner(new File("save/player/" + nick + ".sav"));
         while(sc.hasNext()){
             personaje = sc.nextLine().split(":");
