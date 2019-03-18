@@ -1,16 +1,15 @@
 package data;
 
 public class Enemigo {
-    private String nombre, avatar;
-    private int[] stats;
-    
+    private String nombre;
+    private int hp;
+
     public Enemigo() {
     }
-    
-    public Enemigo(String nombre, String avatar, int[] stats) {
+
+    public Enemigo(String nombre, int hp) {
         this.nombre = nombre;
-        this.avatar = avatar;
-        this.stats = stats;
+        this.hp = hp;
     }
 
     public String getNombre() {
@@ -21,26 +20,16 @@ public class Enemigo {
         this.nombre = nombre;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public int getHp() {
+        return hp;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public int[] getStats() {
-        return stats;
-    }
-
-    public void setStats(int[] stats) {
-        this.stats = stats;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     @Override
     public String toString() {
-        return "Enemigo{" + "nombre=" + nombre + ", avatar=" + avatar + ", stats=" + stats + '}';
+        return "Enemigo{" + "nombre=" + nombre + ", hp=" + hp + '}';
     }
-
-    //metodo atacar()?
 }
