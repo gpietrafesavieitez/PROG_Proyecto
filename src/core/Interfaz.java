@@ -41,11 +41,11 @@ public class Interfaz {
     
     public static void escenario1(Personaje pj) throws IOException{
         guardarPartida(pj, 1);
-        int op = crearEscena("img/Forest.gif", new String[]{"IR A LA IZQUIERDA", "IR A LA DERECHA"}, "Te despiertas en medio de un bosque.\nLlueve y está oscuro pero no estás seguro que sea de noche.\nTu hija pequeña, Luna, ha desaparecido.\nDecides ir a buscarla pero hay dos caminos que se separan.\nHace bastante frío y no sabes si tu hija estará bien.\n¿Qué quieres hacer?");
+        int op = crearEscena("img/Bosque.gif", new String[]{"IR A LA IZQUIERDA", "IR A LA DERECHA"}, "Te despiertas en medio de un bosque.\nLlueve y está oscuro pero no estás seguro que sea de noche.\nTu hija pequeña, Luna, ha desaparecido.\nDecides ir a buscarla pero hay dos caminos que se separan.\nHace bastante frío y no sabes si tu hija estará bien.\n¿Qué quieres hacer?");
         if(op == 0){
-            op = crearEscena("img/Fight1.gif", new String[]{"ENFRENTAR", "DIALOGAR"}, "Te adentras por el camino de la izquierda y\nte encuentras con un grupo de elfos que se dan cuenta\nde tu presencia. No sabes si son hostiles\npero es posible que sepan algo de tu hija\n¿Qué haces?");
+            op = crearEscena("img/Elfos.gif", new String[]{"ENFRENTAR", "DIALOGAR"}, "Te adentras por el camino de la izquierda y\nte encuentras con un grupo de elfos que se dan cuenta\nde tu presencia. No sabes si son hostiles\npero es posible que sepan algo de tu hija\n¿Qué haces?");
             if(op == 1 && pj.getRaza().equalsIgnoreCase("Elfo")){
-                op = crearEscena("img/Fight1.gif", new String[]{"CONTINUAR"}, "El grupo de elfos parece amigable\ny hablando con ellos te cuentan que\nhace unas pocas horas vieron a\nuna niña escapando de algo en\ndirección al centro del bosque.\nLes pides que concreten qué era lo\nque le perseguía pero te dicen\nque no tienen ni idea.");
+                op = crearEscena("img/Elfos1.gif", new String[]{"CONTINUAR"}, "El grupo de elfos parece amigable\ny hablando con ellos te cuentan que\nhace unas pocas horas vieron a\nuna niña escapando de algo en\ndirección al centro del bosque.\nLes pides que concreten qué era lo\nque le perseguía pero te dicen\nque no tienen ni idea.");
             }else{ // Sistema muy arcaico de pelea
                 Random rand = new Random();
                 int randnum;
@@ -57,18 +57,18 @@ public class Interfaz {
                     }
                     randnum = rand.nextInt((50 - 0) + 1) + 0;
                     player.setHp(player.getHp() - randnum);
-                    op = crearEscena("img/Fight1.gif", new String[]{"ATACAR", "HUIR"}, "El grupo de elfos te ataca y te hace " + randnum + " puntos de daño. Tienes " + player.getHp() + " puntos de vida\n¿Qué haces?");
+                    op = crearEscena("img/Elfos.gif", new String[]{"ATACAR", "HUIR"}, "El grupo de elfos te ataca y te hace " + randnum + " puntos de daño. Tienes " + player.getHp() + " puntos de vida\n¿Qué haces?");
                     if(op == 0){
                         randnum = rand.nextInt((100 - 0) + 1) + 0;
                         enemy.setHp(enemy.getHp() - randnum);
-                        op = crearEscena("img/Fight1.gif", new String[]{"CONTINUAR"}, "Atacas al grupo de elfos y les haces " + randnum + " puntos de daño.");
+                        op = crearEscena("img/Elfos.gif", new String[]{"CONTINUAR"}, "Atacas al grupo de elfos y les haces " + randnum + " puntos de daño.");
                     }else if(op == 1){
                         randnum = rand.nextInt((100 - 0) + 1) + 0;
                         if(randnum > 50){
-                            op = crearEscena("img/Fight1.gif", new String[]{"CONTINUAR"}, "Intentas escapar de tu enemigo y lo consigues.");
+                            op = crearEscena("img/Elfos.gif", new String[]{"CONTINUAR"}, "Intentas escapar de tu enemigo y lo consigues.");
                             break;
                         }else{
-                            op = crearEscena("img/Fight1.gif", new String[]{"CONTINUAR"}, "Intentas escapar de tu enemigo sin éxito.");
+                            op = crearEscena("img/Elfos.gif", new String[]{"CONTINUAR"}, "Intentas escapar de tu enemigo sin éxito.");
                         }
                     }
                 }while(enemy.getHp() > 0);
