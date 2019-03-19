@@ -1,8 +1,8 @@
 package app;
 
-public class RPGame {
+public class RPGame{
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Juego.iniciar();
     }
 }
