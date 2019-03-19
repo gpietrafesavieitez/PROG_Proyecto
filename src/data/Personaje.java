@@ -1,8 +1,12 @@
 package data;
 
+import static core.Interfaz.*;
+import static core.Metodos.*;
+import java.io.IOException;
+
 public class Personaje {
     private String nick, raza, avatar;
-    private int hp, save; // de momento solo hp para simplificar, si tal luego se mete atq,def,magia etc
+    private int hp, save;
     
     public Personaje(){
     }
@@ -10,13 +14,6 @@ public class Personaje {
     public Personaje(String raza) {
         this.raza = raza;
         this.avatar = "img/icons/" + this.raza + ".jpg";
-        if(raza.equalsIgnoreCase("Humano")){
-            this.hp = 100;
-        }else if(raza.equalsIgnoreCase("Elfo")){
-            this.hp = 200;
-        }else{
-            this.hp = 85;
-        }
     }
 
     public Personaje(String nick, String raza, String avatar, int hp, int save) {
@@ -67,9 +64,14 @@ public class Personaje {
         this.save = save;
     }
     
-    //metodo atacar()?
     @Override
     public String toString() {
         return "Personaje{" + "nick=" + nick + ", raza=" + raza + ", avatar=" + avatar + ", hp=" + hp + ", save=" + save + '}';
+    }
+    
+    public void morir() throws IOException {
+        guardarPartida(this, 0);
+        crearEscena("img/icons/Morir.jpg", new String[]{"Game Over"}, "¡Has muerto! :(");
+        menuInicio();
     }
 }

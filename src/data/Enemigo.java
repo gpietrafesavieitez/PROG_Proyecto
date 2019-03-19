@@ -1,23 +1,13 @@
 package data;
 
 public class Enemigo {
-    private String nombre;
     private int hp;
 
     public Enemigo() {
     }
 
-    public Enemigo(String nombre, int hp) {
-        this.nombre = nombre;
+    public Enemigo(int hp) {
         this.hp = hp;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public int getHp() {
@@ -30,6 +20,6 @@ public class Enemigo {
 
     @Override
     public String toString() {
-        return "Enemigo{" + "nombre=" + nombre + ", hp=" + hp + '}';
+        return "Enemigo{" + "hp=" + hp + '}';
     }
 }

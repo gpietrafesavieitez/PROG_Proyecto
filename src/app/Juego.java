@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class Juego {
-    // TODAS LAS EXCEPCIONES SE TRATAN AQUI
+    
     public static void iniciar(){
         System.out.println("Debug console:");
         try{

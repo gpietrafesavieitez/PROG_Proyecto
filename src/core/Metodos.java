@@ -60,7 +60,8 @@ public class Metodos {
     public static void cargarPartida(Personaje pj) throws IOException{
         switch(pj.getSave()){ // Redirige a un escenario concreto en base al ultimo guardado efectuado
             case 0:
-                System.out.println("Pasas x el escenario 0 primero xd");
+                pj.setHp(100);
+                escenario0(pj);
             case 1:
                 escenario1(pj);
                 break;
@@ -71,7 +72,7 @@ public class Metodos {
                 escenario3(pj);
                 break;
             default:
-                System.out.println("nosexd");
+                System.out.println("default");
         }
     }
 

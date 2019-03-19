@@ -9,9 +9,10 @@ import data.*;
 import static core.Metodos.*;
 
 public class Interfaz {
+    static  Random  rand;
     
     public static void menuInicio() throws FileNotFoundException, IOException{
-        int op = JOptionPane.showOptionDialog(null, null, "RPGame", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("img/Inicio.jpg"), new String[]{"NUEVO JUEGO", "CONTINUAR", "CRÉDITOS", "SALIR"}, null);
+        int op = JOptionPane.showOptionDialog(null, null, "RPGame", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("img/Inicio.jpg"), new String[]{"Nueva partida", "Continuar", "Créditos", "Salir"}, null);
         switch(op){
             case 0:
                 cargarPartida(playerBuilder());
@@ -20,7 +21,7 @@ public class Interfaz {
                 cargarPartida(playerChooser());
                 break;
             case 2:
-                JOptionPane.showMessageDialog(null, "- Sergio Lorenzo Rodríguez.\n- Gabriel Pietrafesa Viéitez.\n\nVersión: Pre-alfa (en desarrollo)", "RPGame", 3);
+                JOptionPane.showMessageDialog(null, "- Sergio Lorenzo Rodríguez.\n- Gabriel Pietrafesa Viéitez.\n\nVersión: Alfa", "RPGame", 3);
                 menuInicio();
                 break;
             default:
@@ -35,58 +36,104 @@ public class Interfaz {
         return op;
     }
     
-    public static int crearEscena(String img, String[] opciones, String texto){
-        return JOptionPane.showOptionDialog(null, texto, "RPGame", 0, 0, new ImageIcon(img), opciones, null);
+    public static int crearEscena(String img, String[] opciones, String texto) throws IOException{
+        int op = JOptionPane.showOptionDialog(null, texto, "RPGame", 0, 0, new ImageIcon(img), opciones, null);
+        if(op == -1){
+            menuInicio();
+        }
+        return op;
+    }
+    
+    public static void escenario0(Personaje pj) throws IOException{
+        int op = crearEscena("img/Bosque.gif", new String[]{"Continuar"}, "Te despiertas en medio de un oscuro bosque.\nLlueve bastante y apenas hay luz pero no\nestás muy seguro que sea de noche.\nNo sabes que haces ahí pero recuerdas que hace\npoco estabas con tu hija pequeña Megumin dando\nun paseo y ahora ha desaparecido. Decides ir\na buscarla pero frente tuya hay dos caminos\nque se separan. Hace frío y no sabes si tu\nhija estará bien.");
     }
     
     public static void escenario1(Personaje pj) throws IOException{
         guardarPartida(pj, 1);
-        int op = crearEscena("img/Bosque.gif", new String[]{"IR A LA IZQUIERDA", "IR A LA DERECHA"}, "Te despiertas en medio de un bosque.\nLlueve y está oscuro pero no estás seguro que sea de noche.\nTu hija pequeña, Luna, ha desaparecido.\nDecides ir a buscarla pero hay dos caminos que se separan.\nHace bastante frío y no sabes si tu hija estará bien.\n¿Qué quieres hacer?");
+        int op = crearEscena("img/Bosque.gif", new String[]{"Izquierda", "Derecha"}, "Estás en el bosque.\n\nDos caminos se separan ante ti,\n\n¿Cuál tomarás?");
         if(op == 0){
-            op = crearEscena("img/Elfos.gif", new String[]{"ENFRENTAR", "DIALOGAR"}, "Te adentras por el camino de la izquierda y\nte encuentras con un grupo de elfos que se dan cuenta\nde tu presencia. No sabes si son hostiles\npero es posible que sepan algo de tu hija\n¿Qué haces?");
-            if(op == 1 && pj.getRaza().equalsIgnoreCase("Elfo")){
-                op = crearEscena("img/Elfos1.gif", new String[]{"CONTINUAR"}, "El grupo de elfos parece amigable\ny hablando con ellos te cuentan que\nhace unas pocas horas vieron a\nuna niña escapando de algo en\ndirección al centro del bosque.\nLes pides que concreten qué era lo\nque le perseguía pero te dicen\nque no tienen ni idea.");
-            }else{ // Sistema muy arcaico de pelea
-                Random rand = new Random();
-                int randnum;
-                Enemigo enemy = new Enemigo("Elfos", 100);
-                do{
-                    if(player.getHp() <= 0){
-                        System.out.println("muerto lol");
-                        break;
-                    }
-                    randnum = rand.nextInt((50 - 0) + 1) + 0;
-                    player.setHp(player.getHp() - randnum);
-                    op = crearEscena("img/Elfos.gif", new String[]{"ATACAR", "HUIR"}, "El grupo de elfos te ataca y te hace " + randnum + " puntos de daño. Tienes " + player.getHp() + " puntos de vida\n¿Qué haces?");
-                    if(op == 0){
-                        randnum = rand.nextInt((100 - 0) + 1) + 0;
-                        enemy.setHp(enemy.getHp() - randnum);
-                        op = crearEscena("img/Elfos.gif", new String[]{"CONTINUAR"}, "Atacas al grupo de elfos y les haces " + randnum + " puntos de daño.");
-                    }else if(op == 1){
-                        randnum = rand.nextInt((100 - 0) + 1) + 0;
-                        if(randnum > 50){
-                            op = crearEscena("img/Elfos.gif", new String[]{"CONTINUAR"}, "Intentas escapar de tu enemigo y lo consigues.");
-                            break;
+            escenario2(pj);
+        }else if(op == 1){
+            op = crearEscena("img/Ciudad.gif", new String[]{"Volver", "Entrar", "Infiltrarte"}, "Llegas a las puertas de una pequeña\nciudadela. A ambos lados hay unos\nenormes guardias que las custodian.\nEs posible que dentro haya alguien\nque sepa algo sobre tu hija pero no\nsabes si serás bien recibido en esa\nciudad. ¿Qué opcion eliges?");
+            switch(op){
+                case 0: 
+                    escenario1(pj);
+                    break;
+                case 1:
+                    crearEscena("img/Ciudad.gif", new String[]{"Continuar"}, "Nada más dar un paso los\nguardias te apuntan con sus\narmas y te gritan que te marches\nasí que no te queda más remedio\nque dar media vuelta.");
+                    escenario1(pj);
+                    break;
+                case 2:
+                    rand = new Random();
+                    int randNum = rand.nextInt((100 - 0) + 1) + 0;
+                    if(randNum < 50){
+                        crearEscena("img/Ciudad.gif", new String[]{"Continuar"}, "Intentas escabullirte y fallas.\n\nLos guardias te han visto tratando de saltar la muralla\nTe cogen y te echan de la ciudad");
+                        escenario1(pj);
+                    }else{
+                        op = crearEscena("img/Alcantarillas.gif", new String[]{"''DONDE ESTA MI HIJA''","''Estoy buscando a mi hija''"}, "Consigues adentrarte satisfactoriamente\nen la ciudad a través del sistema de\nalcantarillado sin que los guardias se\nden cuenta. Llegas a una especie de zona\nsecreta de la ciudad donde te encuentras\ncon un hombre barbudo que te pregunta\nqué ***** haces ahí.");
+                        if(op == 0){
+                            crearEscena("img/Alcantarillas.gif", new String[]{"Continuar"}, "''¡Hey, no hace falta que me grites!\n¿Una chiquilla de rojo? si, vi a\nalguien así hace unas horas corriendo\nhacia el bosque. Si ha ido hacia allí\nserá mejor que te des prisa en encontrarla\nporque dentro vive una criatura siniestra.''");
                         }else{
-                            op = crearEscena("img/Elfos.gif", new String[]{"CONTINUAR"}, "Intentas escapar de tu enemigo sin éxito.");
+                            crearEscena("img/Alcantarillas.gif", new String[]{"Continuar"}, "''¿Una chiquilla de rojo? si, vi a\nalguien así hace unas horas corriendo\nhacia el bosque. Si ha ido hacia allí\nserá mejor que te des prisa en encontrarla\nporque dentro vive una criatura siniestra.''");
                         }
+                        escenario3(pj);
                     }
-                }while(enemy.getHp() > 0);
+                    break;
             }
-            System.out.println("Sales del bucle");
-        }else if(op == 1){  
         }
     }
     
     public static void escenario2(Personaje pj) throws IOException{
         guardarPartida(pj, 2);
-        System.out.println("Este es el escenario 2");
-        System.out.println(pj.toString());
+        int op = crearEscena("img/Elfos.gif", new String[]{"Atacar", "Dialogar"}, "Te adentras por el camino de la izquierda y\nte encuentras con un pequeño grupo de elfos\nque se dan cuenta de tu presencia. No sabes\nsi son hostiles pero es posible que sepan\nalgo acerca de tu hija. ¿Qué haces?");
+        if(op == 1 && pj.getRaza().equalsIgnoreCase("Elfo")){
+            crearEscena("img/Elfos.gif", new String[]{"Continuar"}, "El grupo de elfos parece amigable\ny hablando con ellos te cuentan que\nhace unas pocas horas vieron a\nuna niña escapando de algo en\ndirección al centro del bosque.\nLes pides que concreten qué era lo\nque le perseguía pero te dicen\nque no tienen ni idea.");
+        }else{
+            crearEscena("img/Elfos.gif", new String[]{"¡Luchar!"}, "De repente, uno de los elfos\ncarga contra ti tan rápido que\nno te da tiempo ni a reaccionar\ny te asesta un golpe en la cara.\nTe apartas rápidamente pero no\npuedes ignorar el sabor de la\nsangre. Desenfundas tu arma y\nte preparas para la batalla...");
+            pj.setHp(100);
+            Enemigo enemy = new Enemigo(100);
+            while(enemy.getHp() > 0){
+                if(player.getHp() <= 0){
+                    player.morir();
+                    break;
+                }
+                rand = new Random();
+                int randPlayer = rand.nextInt((25 - 0) + 1) + 0;
+                player.setHp(player.getHp() - randPlayer);
+                int randEnemy = rand.nextInt((100 - 0) + 1) + 0;
+                enemy.setHp(enemy.getHp() - randEnemy);
+                crearEscena("img/Elfos.gif", new String[]{"¡Atacar!"}, "El elfo arremete contra ti y te hace " + randPlayer + " punto(s) de daño.\n\nTienes " + player.getHp() + " punto(s) de vida.\n\nAhora tu atacas al elfo y le causas " + randEnemy + " punto(s) de daño.");
+            }
+            crearEscena("img/Elfos.gif", new String[]{"Leer"}, "Finalmente, consigues encajar un golpe\nmortal al elfo y éste cae redondo al\nsuelo. Ante tal situación, los elfos\nque quedan huyen despavoridos. Decides\nregistrar al elfo por si lleva alguna\npista y encuentras una extraña nota...");
+            crearEscena("img/icons/Pista.jpg", new String[]{"Continuar"}, "La nota reza:\n''Sigue por el sendero sombrío y hallarás tu destino.''");
+        }
+        escenario3(pj);
     }
     
     public static void escenario3(Personaje pj) throws IOException{
         guardarPartida(pj, 3);
-        System.out.println("Este es el escenario 3");
-        System.out.println(pj.toString());
+        crearEscena("img/Sendero.gif", new String[]{"Continuar"}, "La pista te conduce hacia un oscuro\nsendero que lleva a un lugar recóndito\ndel bosque. Mientras sigues el camino\npuedes observar manchas de sangre,\ntodavía frescas. Te temes lo peor así\nque apuras el paso...");
+        crearEscena("img/Boss.gif", new String[]{"¡Luchar!"}, "Tus pasos te acaban llevando\nhasta un pequeño claro. Justo\nen el medio se encuentra una\ncriatura la cual no sabrías\nidentificar pero claramente\nhumanoide. La criatura parece\nestar afilando su arma hasta\nque se entera de tu presencia\ny carga contra ti, pero tu ya\nestás preparado para lo que se\navecina a continuación... ");
+        pj.setHp(100);
+            Enemigo enemy = new Enemigo(200);
+            while(enemy.getHp() > 0){
+                if(player.getHp() <= 0){
+                    player.morir();
+                    break;
+                }
+                rand = new Random();
+                int randPlayer = rand.nextInt((50 - 0) + 1) + 0;
+                player.setHp(player.getHp() - randPlayer);
+                int randEnemy = rand.nextInt((100 - 0) + 1) + 0;
+                enemy.setHp(enemy.getHp() - randEnemy);
+                crearEscena("img/Test.gif", new String[]{"Atacar"}, "La criatura arremete contra ti y te hace " + randPlayer + " punto(s) de daño.\n\nTienes " + player.getHp() + " punto(s) de vida.\n\nAhora tu atacas a la criatura y le causas " + randEnemy + " punto(s) de daño.");
+            }
+            escenario4(pj);
+    }
+    
+    public static void escenario4(Personaje pj) throws IOException{
+        guardarPartida(pj, 0);
+        crearEscena("img/Hija.gif", new String[]{"Continuar"}, "¡Felicidades, lo has conseguido!\n\nHas rescatado a tu hija, ahora está sana y salva.\n\nHaz click para empezar una nueva partida.");
+        menuInicio();
     }
 }
