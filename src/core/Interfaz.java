@@ -24,7 +24,7 @@ public class Interfaz{
                 cargarPartida(playerChooser());
                 break;
             case 2:
-                JOptionPane.showMessageDialog(null, "- Gabriel Pietrafesa Viéitez.\n- Sergio Lorenzo Rodríguez.\n\nVersión: 1.2.1", "RPGame", 3);
+                JOptionPane.showMessageDialog(null, "- Gabriel Pietrafesa Viéitez.\n- Sergio Lorenzo Rodríguez.\n\nVersión: 1.2.2", "RPGame", 3);
                 menuInicio();
                 break;
             default: 
@@ -75,7 +75,7 @@ public class Interfaz{
                     // Se simula una tirada al dado
                     randPlayer = rand.nextInt((100 - 0) + 1) + 0; // Numero aleatorio entre 0 y 100
                     if(randPlayer < 50){ // Si es menor que 50 fallas y no te cuelas
-                        crearEscena("img/ciudad.gif", new String[]{"Continuar"}, "Intentas escabullirte y fallas.\n\nLos guardias te han visto tratando de saltar la muralla\nTe cogen y te echan de la ciudad");
+                        crearEscena("img/ciudad.gif", new String[]{"Continuar"}, "Intentas escabullirte y fallas.\n\nLos guardias te han visto tratando de saltar la muralla.\n\nTe cogen y te echan de la ciudad.");
                         escenario1(pj);
                     }else{ // Si es mayor que 50 consigues colarte
                         op = crearEscena("img/alcantarillas.gif", new String[]{"''DONDE ESTA MI HIJA''", "''Estoy buscando a mi hija''"}, "Consigues adentrarte satisfactoriamente\nen la ciudad a través del sistema de\nalcantarillado sin que los guardias se\nden cuenta. Llegas a una especie de zona\nsecreta de la ciudad donde te encuentras\ncon un hombre barbudo que te pregunta\nqué ***** haces ahí.");
