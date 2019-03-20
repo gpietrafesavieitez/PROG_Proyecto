@@ -25,10 +25,11 @@ public class Jugador extends Personaje{
     public void setSave(int save){
         this.save = save;
     }
-
+    
+    /* Guarda partida en escenario 0 para volver a empezar */
     public void morir() throws IOException{
         guardarPartida(this, 0);
-        crearEscena("img/icons/Morir.jpg", new String[]{"Game Over"}, "¡Has muerto! :(");
+        crearEscena("img/icons/morir.jpg", new String[]{"Game Over"}, "¡Has muerto! :(");
         menuInicio();
     }
 }
